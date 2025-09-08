@@ -5,10 +5,10 @@ function setup () {
 function draw () {
     background (255,255,255);
     const originalY = 300; // center of canvas
-    const divider = 60;
-    noiseSeed(5);
+    const divider = 50;
+    noiseSeed(50);
     beginShape();
-  for (let x = 0; x < 600; x++) {
+  for (let x =0; x < 600; x++) {   // from width 0 to 600 is drawn
     //const y = originalY + Math.random() * 100;
     const y = originalY + noise(x / divider) * 100;
     
