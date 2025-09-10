@@ -11,8 +11,14 @@ function getRandomValue(pos, variance) {
 
 function drawLayers(x, y, size, layers) {
   const variance = size / 20;
-  noFill();
-  stroke(0,60);
+ 
+  stroke(random(255),random(120),random(160));
+   noFill();
+   if (random()>0.5){
+    fill(random(100),random(215),random(10));
+   } else {
+    noFill(); 
+   }
 
   for (let i = 0; i < layers; i++) {
     if (Math.random() > 0.9) {
@@ -44,7 +50,7 @@ function drawLayers(x, y, size, layers) {
 }
 
 function draw() {
-  background(255, 255, 255);
+  background(25, 55, 25);
 
   for (let y = 0; y < 10; y++) {
     for (let x = 0; x < 10; x++) {
