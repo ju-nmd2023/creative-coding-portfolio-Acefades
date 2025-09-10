@@ -11,14 +11,9 @@ function getRandomValue(pos, variance) {
 
 function drawLayers(x, y, size, layers) {
   const variance = size / 20;
- 
-  stroke(random(255),random(120),random(160));
-   noFill();
-   if (random()>0.5){
-    fill(random(100),random(215),random(10));
-   } else {
-    noFill(); 
-   }
+
+  stroke(random(255), random(120), random(160));
+  noFill();
 
   for (let i = 0; i < layers; i++) {
     if (Math.random() > 0.9) {
@@ -27,30 +22,33 @@ function drawLayers(x, y, size, layers) {
 
     const s = (size / layers) * i;
     const half = s / 2;
-
-    beginShape();
-    vertex(
-      getRandomValue(x - half, variance),
-      getRandomValue(y - half, variance)
-    );
-    vertex(
-      getRandomValue(x + half, variance),
-      getRandomValue(y - half, variance)
-    );
-    vertex(
-      getRandomValue(x + half, variance),
-      getRandomValue(y + half, variance)
-    );
-    vertex(
-      getRandomValue(x - half, variance),
-      getRandomValue(y + half, variance)
-    );
-    endShape(CLOSE);
+  
+  
+    for (let j = 0; j < 3; j++) {
+      beginShape();
+      vertex(
+        getRandomValue(x - half, variance),
+        getRandomValue(y - half, variance)
+      );
+      vertex(
+        getRandomValue(x + half, variance),
+        getRandomValue(y - half, variance)
+      );
+      vertex(
+        getRandomValue(x + half, variance),
+        getRandomValue(y + half, variance)
+      );
+      vertex(
+        getRandomValue(x - half, variance),
+        getRandomValue(y + half, variance)
+      );
+      endShape(CLOSE);
+    }
   }
 }
 
 function draw() {
-  background(25, 55, 25);
+  background(random(255), random(255), random(255));
 
   for (let y = 0; y < 10; y++) {
     for (let x = 0; x < 10; x++) {
@@ -60,4 +58,3 @@ function draw() {
 
   noLoop();
 }
-                 
