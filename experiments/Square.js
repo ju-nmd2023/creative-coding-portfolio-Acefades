@@ -12,6 +12,7 @@ function getRandomValue(pos, variance) {
 function drawLayers(x, y, size, layers) {
   const variance = size / 20;
   noFill();
+  stroke(0,60);
 
   for (let i = 0; i < layers; i++) {
     if (Math.random() > 0.9) {
