@@ -27,15 +27,20 @@ function draw() {
   for (let i = 0; i < 5; i++) {
     strokeWeight(random(2, 5));
     noiseSeed(i * 100);
-    stroke(random(100, 255), random(100, 255), random(100, 255));
-    noFill();
+    for (let j = 0; j < 3; j++) {
+      // draws 3 waves with variations
 
-    beginShape();
-    for (let x = 0; x < width; x++) {
-      const y = originalY + i * 20 + noise(x / divider + i) * 100;
-      vertex(x, y);
+      stroke(random(100, 255), random(100, 255), random(100, 255));
+      noFill();
+
+      beginShape();
+      for (let x = 0; x < width; x++) {
+        const y =
+          originalY + i * 20 + noise(x / divider + i + frameCount * 0.01) * 100;
+        vertex(x, y);
+      }
+      endShape();
     }
-    endShape();
   }
 
   noLoop();
