@@ -1,9 +1,16 @@
 function setup() {
   createCanvas(600, 600);
 }
-
+function drawGradient() {
+  for (let y = 0; y < height; y++) {
+    let inter = map(y, 0, height, 0, 1);
+    let c = lerpColor(color(50, 100, 200), color(255, 200, 150), inter);
+    stroke(c);
+    line(0, y, width, y);
+  }
+}
 function draw() {
-  background(255);
+  drawGradient();
 
   const originalY = 300; // center of canvas
   const divider = 50;
