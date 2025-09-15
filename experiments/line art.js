@@ -11,15 +11,25 @@ function drawGradient() {
 }
 function draw() {
   drawGradient();
-
+  for (let i = 0; i < 200; i++) {
+    let x = random(width);
+    let y = random(height);
+    let r = random(1, 3);
+    fill(255, 255, 200, random(100, 255));
+    stroke(255);
+    ellipse(x, y, r);
+    point(random(width), random(height));
+  }
   const originalY = 300; // center of canvas
   const divider = 50;
 
   // draw more waves with different y offsets
   for (let i = 0; i < 5; i++) {
+    strokeWeight(random(2, 5));
     noiseSeed(i * 100);
-    stroke(random(255), random(255), random(255));
+    stroke(random(100, 255), random(100, 255), random(100, 255));
     noFill();
+
     beginShape();
     for (let x = 0; x < width; x++) {
       const y = originalY + i * 20 + noise(x / divider + i) * 100;
