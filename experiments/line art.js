@@ -1,28 +1,25 @@
-function setup () {
-    createCanvas (600,600);
+function setup() {
+  createCanvas(600, 600);
 }
 
-function draw () {
-    background (255,255,255);
-    const originalY = 300; // center of canvas
-    const divider = 50;
-    // draw more waves
-    for (let i = 0; i < 5;i++) {
-      noiseSeed(i*100);
-      stroke(random(255), random(255),random(255));
-      noFill();
-      beginShape();
-      for (let x = 0; x < 600; x++) {
-        // from width 0 to 600 is drawn
-        //const y = originalY + Math.random() * 100;
-        const y = originalY + noise(x / divider) * 100;
+function draw() {
+  background(255);
 
-        vertex(x, y);
-      }
-      endShape();
+  const originalY = 300; // center of canvas
+  const divider = 50;
 
-
+  // draw more waves with different y offsets
+  for (let i = 0; i < 5; i++) {
+    noiseSeed(i * 100);
+    stroke(random(255), random(255), random(255));
+    noFill();
+    beginShape();
+    for (let x = 0; x < width; x++) {
+      const y = originalY + i * 20 + noise(x / divider + i) * 100;
+      vertex(x, y);
     }
-    
-    noLoop();      
+    endShape();
+  }
+
+  noLoop();
 }
