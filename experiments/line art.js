@@ -21,6 +21,7 @@ function draw() {
     point(random(width), random(height));
   }
   const originalY = 300; // center of canvas
+  const originalX = 230; 
   const divider = 50;
 
   // draw more waves with different y offsets
@@ -37,6 +38,25 @@ function draw() {
       for (let x = 0; x < width; x++) {
         const y =
           originalY + i * 20 + noise(x / divider + i + frameCount * 0.01) * 100;
+        vertex(x, y);
+      }
+      endShape();
+    }
+  }
+
+  for (let i = 0; i < 5; i++) {
+    strokeWeight(random(2, 5));
+    noiseSeed(i * 100);
+    for (let j = 0; j < 2; j++) {
+      // draws 3 waves with variations
+
+      stroke(random(100, 255), random(100, 255), random(100, 255));
+      noFill();
+
+      beginShape();
+      for (let y = 0; y < height; y++) {
+        const x =
+          originalX + i * 20 + noise(y / divider + i + frameCount * 0.01) * 100;
         vertex(x, y);
       }
       endShape();
