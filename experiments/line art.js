@@ -21,7 +21,7 @@ function draw() {
     point(random(width), random(height));
   }
   const originalY = 300; // center of canvas
-  const originalX = 230; 
+  const originalX = 230;
   const divider = 50;
 
   // draw more waves with different y offsets
