@@ -1,7 +1,32 @@
 [
   {
+    "file": "experiments/dot 1.js",
+    "name": "Dot 1",
+    "description": "An animated grid of glowing dots"
+  },
+  {
+    "file": "experiments/dot 2.js",
+    "name": "Drifting lights",
+    "description": "Soft glowing dots move gently across a grid, creating shifting waves of color and light"
+  },
+  {
     "file": "experiments/line art.js",
-    "name": "Name of your experiment",
-    "description": "Explains the what and the why. What is the main idea? What is the purpose? Describes the coding process and implementation choices and gives a high level system overview."
+    "name": "Line Art",
+    "description": "An animated grid of glowing dots"
+  },
+  {
+    "file": "experiments/line art2.js",
+    "name": "Line Art 2",
+    "description": "An animated grid of glowing dots"
+  },
+  {
+    "file": "experiments/Square.js",
+    "name": "Square",
+    "description": "An animated grid of glowing dots"
+  },
+  {
+    "file": "experiments/square2.js",
+    "name": "Square2",
+    "description": "An animated grid of glowing dots"
   }
 ]
