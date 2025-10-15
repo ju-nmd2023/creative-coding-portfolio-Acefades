@@ -66,6 +66,5 @@ function draw() {
     }
   }       
    
-  noLoop();
 }
  
