@@ -17,16 +17,16 @@
   {
     "file": "experiments/line art2.js",
     "name": "Line Art 2",
-    "description": "An animated grid of glowing dots"
+    "description": "colorful dynamic lines"
   },
   {
     "file": "experiments/Square.js",
     "name": "Square",
-    "description": "An animated grid of glowing dots"
+    "description": "An animated grid of squares shifting in color and shape"
   },
   {
     "file": "experiments/square2.js",
     "name": "Square2",
-    "description": "An animated grid of glowing dots"
+    "description": "An animated grid of squares shifting in color and shape differently"
   }
 ]
