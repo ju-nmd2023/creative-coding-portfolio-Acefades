@@ -25,7 +25,11 @@ class Particle {
     this.vel = createVector(0, 0);
     this.acc = createVector(0, 0);
     this.maxSpeed = 2;
-    this.hue = random(260, 300); // base purple
+    
+    const rand = random(1);
+    if (rand < 0.4) this.hue = random(20, 40); 
+    else if (rand < 0.8) this.hue = random(260, 290); 
+    else this.hue = random(100, 140); 
     this.prevPos = this.pos.copy();
   }
 
@@ -59,12 +63,12 @@ class Particle {
   }
 
   show() {
-    // Hue oscillation
+    // Hue effect
     let h = (this.hue + frameCount * 0.2) % 360;
 
     // Smooth glowing trail
     for (let g = 3; g > 0; g--) {
-      stroke(h, 255, 255, 8);
+      stroke(h, 200, 255, 12);
       strokeWeight(g * 1.5);
       line(this.pos.x, this.pos.y, this.prevPos.x, this.prevPos.y);
     }
@@ -82,6 +86,18 @@ function draw() {
   // Low opacity background for soft trails
   background(0, 0, 0, 12);
 
+  // cloud effect 
+  noStroke();
+  for (let i = 0; i < 30; i++) {
+    let fx = random(width);
+    let fy = random(height);
+    let fsize = random(50, 150);
+    let alpha = random(3, 8); // subtle transparency
+    fill(0, 0, 100, alpha); // white fog
+    ellipse(fx, fy, fsize);
+  }
+
+  // Flow field generation
   let yoff = 0;
   for (let y = 0; y < rows; y++) {
     let xoff = 0;
