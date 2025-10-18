@@ -9,13 +9,12 @@ function setup() {
   createCanvas(600, 600);
   colorMode(HSB, 360, 255, 255, 255);
   background(0);
-
   cols = floor(width / scl);
   rows = floor(height / scl);
   flowfield = new Array(cols * rows);
 
-  // Create particles
-  for (let i = 0; i < 800; i++) {
+  // Create many particles
+  for (let i = 0; i < 1000; i++) {
     particles.push(new Particle());
   }
 }
@@ -26,6 +25,7 @@ class Particle {
     this.vel = createVector(0, 0);
     this.acc = createVector(0, 0);
     this.maxSpeed = 2;
+    this.hue = random(260, 300); // base purple range
     this.prevPos = this.pos.copy();
   }
 
@@ -59,15 +59,28 @@ class Particle {
   }
 
   show() {
-    stroke(255);
+    // Hue oscillation
+    let h = (this.hue + frameCount * 0.2) % 360;
+
+    // Smooth glow effect
+    for (let g = 3; g > 0; g--) {
+      stroke(h, 255, 255, 8);
+      strokeWeight(g * 1.5);
+      line(this.pos.x, this.pos.y, this.prevPos.x, this.prevPos.y);
+    }
+
+    // Bright core
+    stroke(h, 255, 255, 60);
     strokeWeight(1);
     line(this.pos.x, this.pos.y, this.prevPos.x, this.prevPos.y);
+
     this.prevPos = this.pos.copy();
   }
 }
 
 function draw() {
-  background(0, 0, 0, 15);
+  // Low opacity background for soft trails
+  background(0, 0, 0, 12);
 
   let yoff = 0;
   for (let y = 0; y < rows; y++) {
@@ -83,7 +96,7 @@ function draw() {
     yoff += inc;
   }
 
-  zoff += 0.001;
+  zoff += 0.0015; // slower movement for calmer flow
 
   for (let p of particles) {
     p.follow(flowfield);
@@ -92,3 +105,4 @@ function draw() {
     p.show();
   }
 }
+        
