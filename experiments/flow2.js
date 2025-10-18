@@ -1,0 +1,114 @@
+let inc = 0.1;
+let scl = 40;
+let cols, rows;
+let zoff = 0;
+let flowfield;
+let particles = [];
+
+// Tone.js
+let synth;
+let started = false;
+
+function setup() {
+  createCanvas(800, 600);
+  colorMode(HSB, 255);
+  cols = floor(width / scl);
+  rows = floor(height / scl);
+  flowfield = new Array(cols * rows);
+
+  for (let i = 0; i < 3000; i++) {
+    particles[i] = new Particle();
+  }
+  background(0);
+}
+
+function draw() {
+  background(0, 15); // fading trails
+
+  let yoff = 0;
+  for (let y = 0; y < rows; y++) {
+    let xoff = 0;
+    for (let x = 0; x < cols; x++) {
+      let angle = noise(xoff, yoff, zoff) * TWO_PI * 8;
+      let v = p5.Vector.fromAngle(angle);
+      v.setMag(1);
+      flowfield[x + y * cols] = v;
+      xoff += inc;
+    }
+    yoff += inc;
+  }
+  zoff += 0.01;
+
+  for (let p of particles) {
+    p.follow(flowfield);
+    p.update();
+    p.edges();
+    p.show();
+  }
+}
+
+// Start audio on click
+function mousePressed() {
+  if (!started) {
+    Tone.start().then(() => {
+      synth = new Tone.Synth().toDestination();
+      started = true;
+    });
+  }
+}
+
+class Particle {
+  constructor() {
+    this.pos = createVector(random(width), random(height));
+    this.vel = createVector(0, 0);
+    this.acc = createVector(0, 0);
+    this.maxspeed = 3;
+    this.hue = random(255);
+  }
+
+  follow(vectors) {
+    let x = floor(this.pos.x / scl);
+    let y = floor(this.pos.y / scl);
+    let index = x + y * cols;
+    this.applyForce(vectors[index]);
+  }
+
+  applyForce(force) {
+    if (force) this.acc.add(force);
+  }
+
+  update() {
+    this.vel.add(this.acc);
+    this.vel.limit(this.maxspeed);
+    this.pos.add(this.vel);
+    this.acc.mult(0);
+
+    // Random notes while moving
+    if (started && random(1) < 0.001) {
+      let notes = ["C4", "D4", "E4", "G4", "A4"];
+      let note = random(notes);
+      synth.triggerAttackRelease(note, "8n");
+    }
+  }
+
+  show() {
+    stroke(this.hue, 200, 255, 50);
+    strokeWeight(2);
+    ellipse(this.pos.x, this.pos.y, 2, 2);
+  }
+
+  edges() {
+    if (this.pos.x > width) (this.pos.x = 0), this.playEdgeSound();
+    if (this.pos.x < 0) (this.pos.x = width), this.playEdgeSound();
+    if (this.pos.y > height) (this.pos.y = 0), this.playEdgeSound();
+    if (this.pos.y < 0) (this.pos.y = height), this.playEdgeSound();
+  }
+
+  playEdgeSound() {
+    if (started) {
+      let notes = ["C3", "E3", "G3", "B3", "D4"];
+      let note = random(notes);
+      synth.triggerAttackRelease(note, "16n");
+    }
+  }
+}

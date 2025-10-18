@@ -6,7 +6,7 @@
   },
   {
     "file": "experiments/dot 2.js",
-    "name": "Drifting lights",
+    "name": "Drifting Lights",
     "description": "Soft glowing dots move gently across a grid, creating shifting waves of color and light"
   },
   {
@@ -31,12 +31,12 @@
   },
   {
     "file": "experiments/Purple flow 1.js",
-    "name": "Purple flow 1",
+    "name": "Purple Flow 1",
     "description": "Flow field artwork with purple gradients, glowing trails and particle motion"
   },
   {
-    "file": "experiments/flow 2.js",
-    "name": "Mysterious flow",
-    "description": "Particles moving along a flowing field over a glowing orange-purple gradient with soft fog, creating a mysterious effect"
+    "file": "experiments/flow2.js",
+    "name": "Mysterious Flow",
+    "description": "Particles moving along a flowing field over a glowing orange-purple gradient with soft fog, creating a mysterious effect. Click anywhere to trigger sound."
   }
 ]
