@@ -25,11 +25,11 @@ class Particle {
     this.vel = createVector(0, 0);
     this.acc = createVector(0, 0);
     this.maxSpeed = 2;
-    
+
     const rand = random(1);
-    if (rand < 0.4) this.hue = random(20, 40); 
-    else if (rand < 0.8) this.hue = random(260, 290); 
-    else this.hue = random(100, 140); 
+    if (rand < 0.4) this.hue = random(20, 40);
+    else if (rand < 0.8) this.hue = random(260, 290);
+    else this.hue = random(100, 140);
     this.prevPos = this.pos.copy();
   }
 
@@ -86,7 +86,7 @@ function draw() {
   // Low opacity background for soft trails
   background(0, 0, 0, 12);
 
-  // cloud effect 
+  // cloud effect
   noStroke();
   for (let i = 0; i < 30; i++) {
     let fx = random(width);
@@ -121,4 +121,3 @@ function draw() {
     p.show();
   }
 }
- 
