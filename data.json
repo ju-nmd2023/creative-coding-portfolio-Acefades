@@ -17,7 +17,7 @@
   {
     "file": "experiments/line art2.js",
     "name": "Line Art 2",
-    "description": "colorful dynamic lines"
+    "description": "Colorful dynamic lines"
   },
   {
     "file": "experiments/Square.js",
@@ -28,5 +28,15 @@
     "file": "experiments/square2.js",
     "name": "Square2",
     "description": "An animated grid of squares shifting in color and shape differently"
+  },
+  {
+    "file": "experiments/Purple flow 1.js",
+    "name": "Purple flow 1",
+    "description": "Flow field artwork with purple gradients, glowing trails and particle motion"
+  },
+  {
+    "file": "experiments/Purple flow 2.js",
+    "name": "Purple flow 2",
+    "description": "Flow field artwork with purple gradients, glowing trails and particle motion"
   }
 ]
