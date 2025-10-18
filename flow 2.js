@@ -9,13 +9,12 @@ function setup() {
   createCanvas(600, 600);
   colorMode(HSB, 360, 255, 255, 255);
   background(0);
-
   cols = floor(width / scl);
   rows = floor(height / scl);
   flowfield = new Array(cols * rows);
 
   // Create particles
-  for (let i = 0; i < 800; i++) {
+  for (let i = 0; i < 500; i++) {
     particles.push(new Particle());
   }
 }
@@ -26,7 +25,7 @@ class Particle {
     this.vel = createVector(0, 0);
     this.acc = createVector(0, 0);
     this.maxSpeed = 2;
-    this.prevPos = this.pos.copy();
+    this.hue = random(260, 300); // base purple
   }
 
   update() {
@@ -55,19 +54,17 @@ class Particle {
     if (this.pos.x < 0) this.pos.x = width;
     if (this.pos.y > height) this.pos.y = 0;
     if (this.pos.y < 0) this.pos.y = height;
-    this.prevPos = this.pos.copy();
   }
 
   show() {
-    stroke(255);
-    strokeWeight(1);
-    line(this.pos.x, this.pos.y, this.prevPos.x, this.prevPos.y);
-    this.prevPos = this.pos.copy();
+    stroke(this.hue, 255, 255);
+    strokeWeight(2);
+    point(this.pos.x, this.pos.y);
   }
 }
 
 function draw() {
-  background(0, 0, 0, 15);
+  background(0, 0, 0, 10);
 
   let yoff = 0;
   for (let y = 0; y < rows; y++) {
@@ -83,7 +80,7 @@ function draw() {
     yoff += inc;
   }
 
-  zoff += 0.001;
+  zoff += 0.0015;
 
   for (let p of particles) {
     p.follow(flowfield);
