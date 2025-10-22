@@ -56,16 +56,15 @@ class Particle {
     if (this.pos.y < 0) this.pos.y = height;
     this.prevPos = this.pos.copy();
   }
-
   show() {
-    let h = (this.hue + frameCount * 0.2) % 360;
-    for (let g = 3; g > 0; g--) {
-      stroke(h, 200, 255, 10);
-      strokeWeight(g * 1.5);
+    let h = (this.hue + frameCount * 0.4) % 360;
+    for (let g = 4; g > 0; g--) {
+      stroke(h, 180, 255, 12);
+      strokeWeight(g * 1.8);
       line(this.pos.x, this.pos.y, this.prevPos.x, this.prevPos.y);
     }
-    stroke(h, 200, 255, 60);
-    strokeWeight(1);
+    stroke(h, 180, 255, 80);
+    strokeWeight(1.5);
     line(this.pos.x, this.pos.y, this.prevPos.x, this.prevPos.y);
     this.prevPos = this.pos.copy();
   }
