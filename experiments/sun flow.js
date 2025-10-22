@@ -71,7 +71,7 @@ class Particle {
 }
 
 function draw() {
-  background(0, 0, 0, 15);
+  background(100, 250, 150, 10);
 
   let yoff = 0;
   for (let y = 0; y < rows; y++) {
@@ -95,3 +95,18 @@ function draw() {
     p.show();
   }
 }
+
+function mouseMoved() {
+  let m = createVector(mouseX, mouseY);
+  for (let p of particles) {
+    let dir = p5.Vector.sub(m, p.pos);
+    let d = dir.mag();
+    if (d < 200) {
+      // larger range of influence
+      let strength = map(d, 0, 200, 0.3, 0.05); // stronger when closer
+      dir.setMag(strength);
+      p.applyForce(dir);
+    }
+  }
+}
+
